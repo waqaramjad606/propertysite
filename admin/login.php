@@ -29,7 +29,7 @@
 
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $hashedPassword = hash('sha256', $password);
+   
     if(!$conn){
 
       ?>
@@ -41,7 +41,8 @@
     }else{
 
       if (!empty($email) && !empty($password)) {
-        $sql = "SELECT * FROM admin_user WHERE email = '$email' and password = '$hashedPassword'";
+        $sql = "SELECT * FROM admin_user WHERE email = '$email' and password = PASSWORD('$password')";
+        echo $sql;
         $result = mysqli_query($conn,$sql);
         $count = mysqli_num_rows($result);
         $result1=mysqli_fetch_assoc($result);

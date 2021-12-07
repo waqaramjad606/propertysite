@@ -243,26 +243,7 @@
 
       </div>
       <!-- End of Main Content -->
-<script type="text/javascript">
 
-  function checkpassword(){
-    // alert('a');
-      var pass=document.getElementById("pass").value;
-      var cpass=document.getElementById("cpass").value;
-      if(pass!=cpass){
-        document.getElementById("updatebtn").disabled = true;
-        document.getElementById("cpass").classList.add("red");
-        document.getElementById("pass").classList.add("red");
-      }else{
-        document.getElementById("updatebtn").disabled = false;
-        document.getElementById("cpass").classList.remove("red");
-        document.getElementById("pass").classList.remove("red");
-      }
-
-
-    }
-
-</script>
 <style>
   .red{
     border-color: red;
@@ -275,57 +256,6 @@
     font-weight: bold;
   }
 </style>
-<?php 
-
-  if(isset($_POST['updatebtn'])){
-    $adminemail= $_POST['adminemail'];
-
-    $pass=$_POST['pass'];
-    if($pass!=""){
-      $hashedPassword=hash('sha256', $pass);
-      $updatequery="update admin set password='$hashedPassword', email = '$adminemail' where admin_id='1'";
-    }else{
-       $updatequery="update admin set email = '$adminemail' where admin_id='1'";
-    }
-    
-    $update=mysqli_query($con,$updatequery);
-    if($update){
-      ?>
-
-      <script type="text/javascript">
-      $(document).ready(function() {
-        swal("Success!", "Admin Updated!", "success");               
-          });
-      </script>
-      <?php 
-    }else{
-      ?>
-      <script type="text/javascript">
-      $(document).ready(function() {
-        swal("Error!", "Not updated because of some error!", "error");               
-          });
-      </script>
-      <?php 
-    }
-  }
-
-  if(isset($_POST['addtesti'])){
-    $clientname = $_POST['clientname'];
-    $shorttext1 = $_POST['shorttext1'];
-
-    $clientimg = $_FILES['clientimg']['name'];
-    $clientimgtarget = "clientimg/".basename($clientimg);
-    move_uploaded_file($_FILES['clientimg']['tmp_name'], $clientimgtarget);
-
-    mysqli_query($con,"INSERT into testimonials(clientname, clientimgpath, clienttext) values ('$clientname','$clientimgtarget','$shorttext1')");
-    ?>
-    <script>
-      swal("Done","Testimonial Added Successfully","success");
-    </script>
-    <?php
-
-  }
-         ?>
       <!-- Footer -->
       <?php include "includes/adminfooter.php"; ?>
       <!-- End of Footer -->

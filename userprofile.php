@@ -89,18 +89,11 @@
                   <label for="" style="float:left;">Registeration Date</label>
                   <input type="text" name="date" class="form-control mb-1" placeholder="" value="<?=$userinfo->user['date_posted'];?>" disabled>
                 </div>
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-12 col-md-12">
                   <label for="" style="float:left;">Subscription Date</label>
                   <input type="text" name="sub_date" class="form-control mb-1" placeholder="" value="<?=$userinfo->user['subscription_date'];?>" disabled>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                  <label for="" style="float:left;">Subscription End</label>
-                  <input type="text" name="" class="form-control mb-1" placeholder="" value="<?php
-                   $subday=explode(" ",$userinfo->user['subscription_date']); 
-                   $curr_date=date('y-m-d', strtotime($subday['0'].'+ 30 days'));
-                    echo $curr_date;
-                   ?>" disabled>
-                </div>
+                
               </div>
               <!-- Sign up button -->
               <button class="btn btn-info my-4 btn-block" id="updateprofilebtn" type="submit">Update Profile</button>

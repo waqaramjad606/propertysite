@@ -20,7 +20,7 @@ $func = $_POST['func'];
         
         $password = $_POST['password1'];
         // $simplepassword=PASS ;
-        $hashedPassword=hash('sha256', $password);
+//        $hashedPassword=hash('sha256', $password);
 
         if (checkemailexists($_POST['email'])) {
             $object->success = false;
@@ -28,7 +28,7 @@ $func = $_POST['func'];
             echo json_encode($object);
             return;
         }else{
-            $sql = "INSERT into user(username, password) VALUES ('".$_POST['email']."', '$hashedPassword')";
+            $sql = "INSERT into user(username, password) VALUES ('".$_POST['email']."', PASSWORD($password))";
             if ($conn->query($sql) === TRUE) {
                 $lastinsertedid = $conn->insert_id;
                 $sql2 = "INSERT into user_detail(user_id,email) values('$lastinsertedid','".$_POST['email']."')";
@@ -48,8 +48,7 @@ $func = $_POST['func'];
         }//func = 1 register user
         else if( $func == "1.1" ){
             $pass = $_POST['loginpassword'];
-            $hasPassword=hash('sha256', $pass);
-            $sql = "select u.id ,u.username,u.password, d.is_subscription, d.subscription_date from user u join user_detail d on u.id=d.user_id  where u.username = '".$_POST['loginemail']."' and u.password = '$hasPassword'";
+            $sql = "select u.id ,u.username,u.password, d.is_subscription, d.subscription_date from user u join user_detail d on u.id=d.user_id  where u.username = '".$_POST['loginemail']."' and u.password = PASSWORD($pass)";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $email = $_POST['loginemail'];
@@ -100,7 +99,9 @@ $func = $_POST['func'];
             if(isset($_POST['deleteuserbyadmin'])){
                 $user_id = $_POST['user_id'];
                 $settokenQuery = "DELETE from user_detail where user_id = '$user_id'";
+                $deluserquery="DELETE from user where id='$user_id'";
                  mysqli_query($conn,$settokenQuery);
+                 mysqli_query($conn,$deluserquery);
                  echo "deleted";
               }// user deleted by admin above
         }//func 1.3
@@ -116,7 +117,6 @@ $func = $_POST['func'];
                 $accountstatus = $_POST['accountstatus'];
                 $password = $_POST['password'];
                 $emailstatus = $_POST['emailstatus'];
-                $hashedPassword=hash('sha256', $password);
                 $user_id = $_POST['user_id'];
           
                 if($password==""){
@@ -124,7 +124,7 @@ $func = $_POST['func'];
                    mysqli_query($conn,$settokenQuery);
                    echo "updated";
                 }else{
-                  $settokenQuery = "UPDATE user_detail set first_name = '$firstname', last_name = '$lastname', email='$email',city='$city',phone='$phone', zip='$postcode', password='$hashedPassword' where user_id = '$user_id'";
+                  $settokenQuery = "UPDATE user_detail set first_name = '$firstname', last_name = '$lastname', email='$email',city='$city',phone='$phone', zip='$postcode', password=PASSWORD($password) where user_id = '$user_id'";
                    mysqli_query($conn,$settokenQuery);
                    echo "updated";
                 }

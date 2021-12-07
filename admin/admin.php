@@ -283,6 +283,7 @@
                     url:"../serverside/ajax.php",
                     data:{deleteuserbyadmin:"yes",user_id:userid,sitekey:"p%<onZmUeePZ{{",func:"1.33"},
                     success:function(data){
+                      // console.log(data);
                       if(data.trim()=="deleted"){
                         swal("Deleted!","User Deleted!","success").then((value) => {
                             window.location.href = "admin";

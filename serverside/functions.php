@@ -92,7 +92,7 @@ function updatepass($user){
 	
 	if(checkoldpass($user)){
 		$hashedPassword=hash('sha256', $user->password);
-		$sql = "UPDATE user set password = '".$hashedPassword."' WHERE id = '".$user->userID."'";
+		$sql = "UPDATE user set password = PASSWORD('$user->password') WHERE id = '".$user->userID."'";
 	
 		if($conn->query($sql)){
 			$conn->close();
@@ -108,8 +108,7 @@ function updatepass($user){
 //check old password
 function checkoldpass($user){
 	$conn = connecttoDB("p%<onZmUeePZ{{");
-	$hashPassword=hash('sha256', $user->oldpass);
-	$sql = "SELECT password from user where id = '".$user->userID."' and password = '".$hashPassword."'";
+	$sql = "SELECT password from user where id = '".$user->userID."' and password = PASSWORD('$user->oldpass') ";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0){
@@ -124,9 +123,9 @@ function updateadminpass($user){
 	$conn = connecttoDB("p%<onZmUeePZ{{");
 	
 	if(checkadminoldpass($user)){
-		$hashedPassword=hash('sha256', $user->password);
-		$sql = "UPDATE admin_user set password = '".$hashedPassword."' WHERE email = '".$user->adminemail."'";
-	
+		// $hashedPassword=hash('sha256', $user->password);
+		$sql = "UPDATE admin_user set password = PASSWORD('$user->password') WHERE email = '".$user->adminemail."'";
+		// echo $sql;
 		if($conn->query($sql)){
 			$conn->close();
 			return true;
@@ -141,8 +140,9 @@ function updateadminpass($user){
 //check old password
 function checkadminoldpass($user){
 	$conn = connecttoDB("p%<onZmUeePZ{{");
-	$hashPassword=hash('sha256', $user->oldpass);
-	$sql = "SELECT password from admin_user where email = '".$user->adminemail."' and password = '".$hashPassword."'";
+	// $hashPassword=hash('sha256', $user->oldpass);
+	$sql = "SELECT password from admin_user where email = '".$user->adminemail."' and password = PASSWORD('$user->oldpass')";
+	// echo $sql;
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0){
