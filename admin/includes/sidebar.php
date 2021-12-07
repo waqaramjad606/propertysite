@@ -24,21 +24,27 @@
           <span>Users Transcatins</span>
         </a>
       </li>
+
       <li class="nav-item " id="newapartli">
         <a class="nav-link" href="addproperty">
           <i class="fa fa-building"></i>
           <span>Add New Property</span>
         </a>
       </li>
+
       <li class="nav-item " id="disableli">
         <a class="nav-link" href="alldisableproperties">
           <i class="fa fa-building"></i>
           <span>All Disable Properties</span>
         </a>
-        <a class="nav-link" href="allactiveproperties" id="activesli">
+      </li>
+
+      <li class="nav-item" id="activesli">
+        <a class="nav-link" href="allactiveproperties" >
           <i class="fa fa-building"></i>
           <span>All Active Properties</span>
         </a>
+      </li>
         <li class="nav-item " id="settingli">
         <a class="nav-link" href="settings">
           <i class="fa fa-user-cog"></i>
