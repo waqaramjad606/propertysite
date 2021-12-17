@@ -80,7 +80,7 @@
 
                 <div class="col-lg-6 col-md-12">
                   <label for="" style="float:left;">Post Code</label>
-                  <input type="text" name="postcode" id="postcode" class="form-control mb-1" placeholder="postcode" value="<?= $userinfo->user['zip'];?>" required>
+                  <input type="number" name="pcode" id="pcode" class="form-control mb-1" placeholder="postcode" value="<?= $userinfo->user['zip'];?>" required>
                 </div>
               </div>
               
@@ -174,7 +174,7 @@
 	   	var phone = $('#phone').val();
       var email = $('#email').val();
       var city = $('#city').val();
-      var postcode = $('#postcode').val();
+      var postcode = $('#pcode').val();
 	   	if(email!=""){
 	   		$.ajax({
 	   			type:"post",

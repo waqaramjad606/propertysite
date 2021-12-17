@@ -54,7 +54,8 @@ function getusersubscriptioninfo($userid){
 function updateUserDetails($user){
 	$conn = connecttoDB("p%<onZmUeePZ{{");
 	$dtime=date("Y-m-d");
-	$sql = "UPDATE user_detail set email = '". $user->email ."', phone = '".$user->phone."', city = '".$user->city."', zip = '".$user->postcode."',
+	$sql = "UPDATE user_detail set email = '". $user->email ."', phone = '".$user->phone."',
+	 city = '".$user->city."',zip='".$user->postcode."',
 	first_name='".$user->firstname."',last_name='".$user->lastname."',date_posted='".$dtime."' WHERE user_id = '".$user->userID."'";
 	// echo $sql;
     if($conn->query($sql)){

@@ -41,16 +41,7 @@
 
 
  ?>
- <script>
-   $(document).ready(function() {
-    var statusvalue = '<?php echo $userdetail['status']; ?>';
-    $('#accountstatus').val(statusvalue);
-
-    var emailstatus = '<?php echo $userdetail['emailverified']; ?>';
-    $('#emailstatus').val(emailstatus);
-
-   });
- </script>
+ 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -168,22 +159,19 @@
               </div>
 
                <div class="form-row mb-4">
-                <div class="col-lg-4 col-md-12">
+                <div class="col-lg-6 col-md-12">
                   <label for="" style="float:left;">Phone</label>
                   <input type="text" name="phone" class="form-control mb-1" placeholder="phone number" value="<?php echo $userdetail['phone']; ?>" required>
                 </div>
 
-                <div class="col-lg-4 col-md-12">
+                <div class="col-lg-6 col-md-12">
                   <label for="" style="float:left;">Post Code</label>
                   <input type="text" name="postcode" class="form-control mb-1" placeholder="Post Code" value="<?php echo $userdetail['zip']; ?>" required>
                 </div>
-                <div class="col-lg-4 col-md-12">
-                  <label for="" style="float:left;">Tax ID</label>
-                  <input type="text" name="taxid" class="form-control mb-1" placeholder="Taxid" value="<?php echo $userdetail['user_taxid']; ?>">
-                </div>
+               
               </div>
             
-              <div class="form-row mb-4">
+              <div class="form-row mb-">
                 <div class="col-lg-6 col-md-12">
                   <label for="" style="float:left;">Update New Password</label>
                   <input type="password" id="password" name="password" class="form-control mb-1" placeholder="New Password" onkeyup="checkpassword();">
@@ -246,7 +234,7 @@
             $('#updateuserbyadmin').submit(function(event){
               event.preventDefault();
               $.ajax({
-                url:"../ajax.php",
+                url:"../serverside/ajax.php",
                 method :"post",
                 data:$('#updateuserbyadmin').serialize()+'&func=1.44&sitekey=p%<onZmUeePZ{{&updateprofilebyadmin=yes&user_id=<?php echo $getuserid ?>',
                 success:function(data){

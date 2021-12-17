@@ -82,18 +82,7 @@
               <input type="number" name="postcode" id="postcode" class="form-control form-control-lg form-control-a" placeholder="postcode">
             </div>
           </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group">
-              <label for="price">Min Price</label>
-              <select class="form-control form-control-lg form-control-a" id="price">
-                <option>Unlimite</option>
-                <option>$50,000</option>
-                <option>$100,000</option>
-                <option>$150,000</option>
-                <option>$200,000</option>
-              </select>
-            </div>
-          </div>
+          
           <div class="col-md-12">
             <button type="submit" id="searchform" class="btn btn-b">Search Property</button>
           </div>
@@ -148,7 +137,7 @@
         else{
           ?>
           <li class="nav-item">
-            <a class="nav-link" href="Signup" id="signupli">Login/Signup</a>
+            <a class="nav-link" href="signup" id="signupli">Login/Signup</a>
           </li>
           <?php
         }

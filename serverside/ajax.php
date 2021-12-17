@@ -113,10 +113,10 @@ $func = $_POST['func'];
                 $city = $_POST['city'];
                 $phone = $_POST['phone'];
                 $postcode = $_POST['postcode'];
-                $taxid = $_POST['taxid'];
-                $accountstatus = $_POST['accountstatus'];
+                // $taxid = $_POST['taxid'];
+                // $accountstatus = $_POST['accountstatus'];
                 $password = $_POST['password'];
-                $emailstatus = $_POST['emailstatus'];
+                // $emailstatus = $_POST['emailstatus'];
                 $user_id = $_POST['user_id'];
           
                 if($password==""){
@@ -124,7 +124,7 @@ $func = $_POST['func'];
                    mysqli_query($conn,$settokenQuery);
                    echo "updated";
                 }else{
-                  $settokenQuery = "UPDATE user_detail set first_name = '$firstname', last_name = '$lastname', email='$email',city='$city',phone='$phone', zip='$postcode', password=PASSWORD($password) where user_id = '$user_id'";
+                  $settokenQuery = "UPDATE user_detail set first_name = '$firstname', last_name = '$lastname', email='$email',city='$city',phone='$phone', zip='$postcode', password=PASSWORD('$password') where user_id = '$user_id'";
                    mysqli_query($conn,$settokenQuery);
                    echo "updated";
                 }
